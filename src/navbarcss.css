@@ -1,0 +1,54 @@
+.my-primary {
+  color: lightYellow;
+  background-color: #18181B;
+}
+
+.sidedar {
+  background-color: #1F1F23;
+}
+
+.navBTN {
+  background-color: #3A3A3D;
+}
+
+.twitch-bg {
+  background-color: #9147FF;
+}
+
+.twitch-text {
+  color: #9147FF
+}
+
+.dark-text {
+  color: #18181B
+}
+
+.acapo {
+  dark-space: nowrap;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btn-circle {
+  width: 35px;
+  height: 35px;
+  line-height: '';
+  text-align: '';
+  border-radius: 50%;
+}
+
+.inputside {
+  position: absolute;
+  bottom: 0;
+  }
+
+  .navbar-font {
+    font-family: Cairo;
+  }
+
+  @font-face {
+    font-family: 'Cairo';
+    src:local('Cairo'),
+    url('./fonts/Cairo.ttf') format('truetype');
+  }
