@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "../../../node_modules/react";
 import { Link } from "../../../node_modules/react-router-dom";
 import api from "./api";
-import { Card, Row } from "react-bootstrap"
+import { Card, Row, Col } from "react-bootstrap"
 
 function Games() {
     const [games, setGames] = useState([]);
@@ -9,7 +9,7 @@ function Games() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await api.get("https://api.twitch.tv/helix/games/top");
-            let dataArray = result.data.data.slice(0, 4);
+            let dataArray = result.data.data.slice(0, 7);
             let finalArray = dataArray.map(game => {
                 let newURL = game.box_art_url
                     .replace("{width}", "300")
@@ -23,9 +23,10 @@ function Games() {
     }, []);
 
     return (
+        <Col lg={12} >
             <Row>
                 {games.map(game => (
-                    <div className='col-md-3 col-md-3 col-md-3 mt-2'>
+                    <div className='p-2'>
                         <Card style={{ width: '200px', height: '350px'}}>
                             <Card.Img style={{ width: '200px', height: '250px'}} className="card-img-top" src={game.box_art_url} />
                             <Card.Body style={{ width: '200px', height: '250px'}}>
@@ -48,6 +49,7 @@ function Games() {
                     </div>
                 ))}
             </Row>
+            </Col>
     );
 }
 

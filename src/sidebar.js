@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Dropdown, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown, Row, Col, Accordion, Button } from 'react-bootstrap';
 import './navbarcss.css'
 import React, { useEffect, useState } from "react";
 import Live from './images/live.svg';
@@ -47,64 +47,71 @@ function Sidebar() {
     }, []);
 
     return (
-        <div>
-            <Navbar className="navbar-font sidedar flex-column " variant="dark" >
-                <Row className='align-content-end'>
-                    <img alt='' className='mr-6' src={Arrow} />
-                </Row>
-                <Row><p></p></Row>
-                <ul className='navbar-font' style={{ 'fontsize': "16px", 'color': "white", 'marginBottom': "15px" }}>
-                    <b>CANALI CHE SEGUI</b>
-                </ul>
-                <div> {channels.map(channel => (
-                    <Row>
-                        <Col className='navbar-font d-flex justify-content-start'>
-                            <Row>
-                                <Nav.Link className='d-flex justify-content-start' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
-                                    <b>{channel.user_name}</b>
-                                </Nav.Link>
-                            </Row>
-                            <Row>
-                                <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
-                            </Row>
-                        </Col>
-                        <Col className='navbar-font d-flex align-content-end'>
-                            <Row>
-                                <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
-                                    <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
-                                </Nav.Link>
-                            </Row>
-                        </Col>
-                    </Row>
-                ))
-                } < Dropdown.Divider style={{ 'marginBottom': "15px" }} />
+        <Accordion defaultActiveKey="0">
+            <div>
+                <Accordion.Collapse eventKey="0">
+                    <Navbar collapseOnSelect expand="lg" className="navbar-font sidedar flex-column" >
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Col>
+                                <Row style={{ 'marginBottom': "15px" }} />
+                                <ul className='navbar-font' style={{ 'font-size': "15px", 'color': "white", 'marginBottom': "15px" }}>
+                                    <b>CANALI CHE SEGUI</b></ul>
+                                <div> {channels.map(channel => (
+                                    <Row>
+                                        <Col className='navbar-font'>
+                                            <Row>
+                                                <Nav.Link className='d-flex justify-content-start' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
+                                                    <b>{channel.user_name}</b>
+                                                </Nav.Link>
+                                            </Row>
+                                            <Row>
+                                                <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
+                                            </Row>
+                                        </Col>
+                                        <Col className='navbar-font'>
+                                            <Row>
+                                                <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
+                                                    <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
+                                                </Nav.Link>
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                ))
+                                } < Dropdown.Divider />
 
-                    <ul className='navbar-font' style={{ 'font-size': "15px", 'color': "white", 'marginBottom': "15px" }}>
-                        <b>CANALI CONSIGLIATI</b></ul>
-                    {channels.map(channel => (
-                        <Row>
-                            <Col className='navbar-font d-flex justify-content-start'>
-                                <Row>
-                                    <Nav.Link className='d-flex justify-content-start' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
-                                        <b>{channel.user_name}</b>
-                                    </Nav.Link>
-                                </Row>
-                                <Row>
-                                    <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
-                                </Row>
+                                    <ul className='navbar-font' style={{ 'font-size': "15px", 'color': "white", 'marginBottom': "15px" }}>
+                                        <b>CANALI CONSIGLIATI</b></ul>
+                                    {channels.map(channel => (
+                                        <Row>
+                                            <Col className='navbar-font'>
+                                                <Row>
+                                                    <Nav.Link className='d-flex' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
+                                                        <b>{channel.user_name}</b>
+                                                    </Nav.Link>
+                                                </Row>
+                                                <Row>
+                                                    <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
+                                                </Row>
+                                            </Col>
+                                            <Col className='navbar-font'>
+                                                <Row>
+                                                    <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
+                                                        <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
+                                                    </Nav.Link>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                    ))}
+                                </div>
                             </Col>
-                            <Col className='navbar-font d-flex align-content-end'>
-                                <Row>
-                                    <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
-                                        <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
-                                    </Nav.Link>
-                                </Row>
-                            </Col>
-                        </Row>
-                    ))}
-                </div>
-            </Navbar>
-        </div>
+                        </Navbar.Collapse>
+                    </Navbar>
+                </Accordion.Collapse>
+                <Accordion.Toggle collapseOnSelect expand="lg" as={Button} className='my-primary' variant="text" eventKey="0">
+                    <img alt='' className='ml-3 mb-1 navBTN' src={Arrow} /> Clicca per ridurre
+                </Accordion.Toggle>
+            </div>
+        </Accordion>
     )
 }
 
