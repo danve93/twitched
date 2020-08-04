@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "../../../node_modules/react";
 import api from "./api";
-import { Card, Row } from 'react-bootstrap'
+import { Card, Row, Col } from 'react-bootstrap'
 
 function Stream() {
     const [channels, setChannels] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             const result = await api.get("https://api.twitch.tv/helix/streams");
-            let dataArray = result.data.data.slice(0, 4);
+            let dataArray = result.data.data.slice(0, 6);
             let gameIDs = dataArray.map(stream => {
                 return stream.game_id;
             });
@@ -43,32 +43,34 @@ function Stream() {
 
 
     return (
-        <Row>
-            {channels.map(channel => (
-                <div className='col-md-3 col-md-3 col-md-3 mt-2'>
-                    <Card>
-                        <Card.Img className="card-img-top" src={channel.thumbnail_url} />
-                        <Card.Body className="flex">
-                            <Card.Title>{channel.user_name}</Card.Title>
-                            <Card.Title className="acapo" ><b>{channel.gameName}</b></Card.Title>
-                            <Card.Text>
-                                {channel.viewer_count} spettatori online
+        <Col lg={12} >
+            <Row>
+                {channels.map(channel => (
+                    <div className='p-2'>
+                        <Card>
+                            <Card.Img className="card-img-top" src={channel.thumbnail_url} />
+                            <Card.Body className="flex">
+                                <Card.Title>{channel.user_name}</Card.Title>
+                                <Card.Title className="acapo" ><b>{channel.gameName}</b></Card.Title>
+                                <Card.Text>
+                                    {channel.viewer_count} spettatori online
                 </Card.Text>
-                            <button className="btn  twitch-bg">
-                                <a
-                                    href={"https://twitch.tv/" + channel.user_name}
-                                    className="dark-text"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Guarda lo stream di  {channel.user_name}
-                                </a>
-                            </button>
-                        </Card.Body>
-                    </Card>
-                </div>
-            ))}
-        </Row>
+                                <button className="btn  twitch-bg">
+                                    <a
+                                        href={"https://twitch.tv/" + channel.user_name}
+                                        className="dark-text"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Guarda lo stream di  {channel.user_name}
+                                    </a>
+                                </button>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                ))}
+            </Row>
+        </Col>
     );
 }
 
