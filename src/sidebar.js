@@ -12,7 +12,7 @@ function Sidebar() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await api.get("https://api.twitch.tv/helix/streams");
-            let dataArray = result.data.data.slice(0, 4);
+            let dataArray = result.data.data.slice(0, 24);
             let gameIDs = dataArray.map(stream => {
                 return stream.game_id;
             });
@@ -55,10 +55,10 @@ function Sidebar() {
                             <Col>
                                 <Row style={{ 'marginBottom': "15px" }} />
                                 <ul className='navbar-font' style={{ 'font-size': "15px", 'color': "white", 'marginBottom': "15px" }}>
-                                    <b>CANALI CHE SEGUI</b></ul>
+                                    <b>CANALI AL TOP</b></ul>
                                 <div> {channels.map(channel => (
                                     <Row>
-                                        <Col className='navbar-font'>
+                                        <Col className='navbar-font pl-5'>
                                             <Row>
                                                 <Nav.Link className='d-flex justify-content-start' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
                                                     <b>{channel.user_name}</b>
@@ -68,7 +68,7 @@ function Sidebar() {
                                                 <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
                                             </Row>
                                         </Col>
-                                        <Col className='navbar-font'>
+                                        <Col className='navbar-font pr-4'>
                                             <Row>
                                                 <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
                                                     <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
@@ -77,31 +77,7 @@ function Sidebar() {
                                         </Col>
                                     </Row>
                                 ))
-                                } < Dropdown.Divider />
-
-                                    <ul className='navbar-font' style={{ 'font-size': "15px", 'color': "white", 'marginBottom': "15px" }}>
-                                        <b>CANALI CONSIGLIATI</b></ul>
-                                    {channels.map(channel => (
-                                        <Row>
-                                            <Col className='navbar-font'>
-                                                <Row>
-                                                    <Nav.Link className='d-flex' eventKey="link-1" style={{ 'color': 'white', 'fontsize': "12px" }}>
-                                                        <b>{channel.user_name}</b>
-                                                    </Nav.Link>
-                                                </Row>
-                                                <Row>
-                                                    <Nav.Link eventKey="link-1" style={{ 'color': 'grey', 'fontsize': "10px" }} />
-                                                </Row>
-                                            </Col>
-                                            <Col className='navbar-font'>
-                                                <Row>
-                                                    <Nav.Link eventKey="link-1" style={{ 'color': 'white', 'fontsize': "14px" }}>
-                                                        <img alt='' className='mb-1' src={Live} /> {channel.viewer_count}
-                                                    </Nav.Link>
-                                                </Row>
-                                            </Col>
-                                        </Row>
-                                    ))}
+                                } 
                                 </div>
                             </Col>
                         </Navbar.Collapse>

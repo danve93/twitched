@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, FormControl, Button, InputGroup } from 'react-bootstrap';
+import { Navbar, Nav, FormControl, Button, InputGroup, DropdownButton, Dropdown, Form, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo from './images/logo.svg';
 import Chat from './images/chat.svg';
@@ -14,18 +14,26 @@ export class navbar extends Component {
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" className="my-primary navbar-font" variant="dark" expand="lg">
+                <Dropdown  >
+                    <Dropdown.Toggle className='bg-transparent my-primary'
+                    ><img src={Logo} width="30" height="30" alt="" />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu >
+                        <Dropdown.Item className='my-primary' eventKey="1" href="/">Home</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item eventKey="1" href="/Seguiti">Seguiti</Dropdown.Item>
+                        <Dropdown.Item eventKey="2" href="/Sfoglia">Sfoglia</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item eventKey="3" href="/Esports">Esports</Dropdown.Item>
+                        <Dropdown.Item eventKey="4" href="/Music">Musica</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
 
-                <Nav.Link href="/"><img src={Logo}
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-left"
-                    alt="" /></Nav.Link>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav.Link className='my-primary' style={{ 'fontsize': "15px" }} href="/Seguiti">Seguiti</Nav.Link>
                     <Nav.Link className='my-primary' style={{ 'fontsize': "15px" }} href="/Sfoglia">Sfoglia</Nav.Link>
                     <Nav.Link className='my-primary' style={{ 'fontsize': "15px" }} href="/Esports">Esports</Nav.Link>
                     <Nav.Link className='my-primary' style={{ 'fontsize': "15px" }} href="/Music">Musica</Nav.Link>
-                    <Nav.Link className='my-primary' style={{ 'fontsize': "15px" }} href="#...">...</Nav.Link>
                     <div />
 
                     <ul className="nav navbar-font navbar-nav ml-5 w-100 justify-content-center">
@@ -65,19 +73,25 @@ export class navbar extends Component {
                         /></Nav.Link>
                         <Nav.Link style={{ 'fontsize': "13px" }} href="#compra" data-toggle="tooltip" data-placement="top" title="Acquista credito"><Button className="navBTN" variant="dark" size="sm">
                             <img src={Compra}
-                            width="15px"
-                            height="15px"
-                            className="d-inline-block align-left mr-2 mb-1"
-                            alt=""
-                        />Compra</Button></Nav.Link>
+                                width="15px"
+                                height="15px"
+                                className="d-inline-block align-left mr-2 mb-1"
+                                alt=""
+                            />Compra</Button></Nav.Link>
                     </ul></Navbar.Collapse>
-                <Nav.Link className='fluid twitch-bg rounded mr-2'  href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=ouulveyk5zqtijgetelrowlgm5yxlt&redirect_uri=http://localhost:3000/&scope=user_read&state=c3ab8aa609ea11e793ae92361f002671" variant="" alignRight id="dropdown-menu-align-right" size="sm">
-                    <img alt='userlogo'
-                        className=''
-                        width="20px"
-                        height="20px"
-                        src={User} />
-                </Nav.Link>
+
+                <Nav.Item className='flex rounded mr-2 ml-3' >
+                    <DropdownButton className='fluid my-primary twitch-bg rounded' variant='' alignLeft drop='left' title={<img src={User} width="20" height="20" alt="" />} >
+                        <Dropdown.Item className='' eventKey="1" href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=ouulveyk5zqtijgetelrowlgm5yxlt&redirect_uri=http://localhost:3000/&scope=user_read&state=c3ab8aa609ea11e793ae92361f002671">Login</Dropdown.Item>
+                        <Form className='pl-4'>
+                            <Form.Check type="switch" id="custom-switch" label="Status online" />
+                        </Form>
+                        <Dropdown.Divider />
+                        <Dropdown.Item className='' eventKey="3" href="#">Impostazioni</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item className='' eventKey="4" href="#">Esci</Dropdown.Item>
+                    </DropdownButton>
+                </Nav.Item>
             </Navbar>
         )
     }
