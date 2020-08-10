@@ -11,7 +11,7 @@ import User from './images/user.svg';
 import './navbarcss.css';
 
 export class navbar extends Component {
-    render() {
+       render() {
         return (
             <Navbar collapseOnSelect expand="lg" className="my-primary navbar-font" variant="dark" expand="lg">
                 <Dropdown  >
@@ -82,7 +82,9 @@ export class navbar extends Component {
 
                 <Nav.Item className='flex rounded mr-2 ml-3' >
                     <DropdownButton className='fluid my-primary twitch-bg rounded' variant='' alignLeft drop='left' title={<img src={User} width="20" height="20" alt="" />} >
-                        <Dropdown.Item className='' eventKey="1" href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=ouulveyk5zqtijgetelrowlgm5yxlt&redirect_uri=http://localhost:3000/&scope=user_read&state=c3ab8aa609ea11e793ae92361f002671">Login</Dropdown.Item>
+                        <Dropdown.Item className='' eventKey="1" href="https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=ouulveyk5zqtijgetelrowlgm5yxlt&redirect_uri=http://localhost:3000/&scope=user_read&state=c3ab8aa609ea11e793ae92361f002671">
+                            bonsaisushi</Dropdown.Item>
+                            <p></p>
                         <Form className='pl-4'>
                             <Form.Check type="switch" id="custom-switch" label="Status online" />
                         </Form>
